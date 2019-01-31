@@ -1,0 +1,14 @@
+ansible installation
+
+enable epel repo in master
+yum install http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm -y
+yum install ansible -y
+ansible --version
+
+
+jenkins installation
+wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
+rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key
+yum install jenkins -y
+service jenkins start
+service jenkins status
