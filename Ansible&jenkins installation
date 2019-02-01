@@ -1,6 +1,7 @@
 ansible installation
 
 enable epel repo in master
+sudo yum install epel-release-latest-7.noarch.rpm
 yum install http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm -y
 yum install ansible -y
 ansible --version
