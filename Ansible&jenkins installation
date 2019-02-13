@@ -6,7 +6,9 @@ yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.r
 sudo yum install epel-release-latest-7.noarch.rpm
 yum install ansible -y
 ansible --version
-
+vi jenkins.yml
+ansible-playbook jenkins.yml --syntax-check
+ansible-playbook jenkins.yml
 
 jenkins installation
 wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
