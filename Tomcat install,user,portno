@@ -11,7 +11,11 @@ bin BUILDING.txt conf CONTRIBUTING.md lib LICENSE logs NOTICE README.md RELEASE-
 
 cd apache-tomcat-8.5.37/bin
 
-startup.sh or sh startup.sh
+To Start Tomcat
+sh startup.sh or sh catalina.sh start
+
+To Stop Tomcat
+sh shutdown.sh or sh catalina.sh stop
 
 netstat -plunt | grep :8080
 
