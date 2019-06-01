@@ -1,6 +1,8 @@
 cd /opt
 
-wget http://mirrors.estointernet.in/apache/tomcat/tomcat-8/v8.5.37/bin/apache-tomcat-8.5.37.tar.gz
+yum install wget -y
+
+wget http://mirrors.estointernet.in/apache/tomcat/tomcat-9/v9.0.20/bin/apache-tomcat-9.0.20.tar.gz
 
 tar xzf apache-tomcat-8.5.37.tar.gz
 
@@ -12,7 +14,7 @@ bin BUILDING.txt conf CONTRIBUTING.md lib LICENSE logs NOTICE README.md RELEASE-
 cd apache-tomcat-8.5.37/bin
 
 To Start Tomcat
-sh startup.sh or sh catalina.sh start
+sh startup.sh or sh catalina.sh start or ./startup.sh
 
 To Stop Tomcat
 sh shutdown.sh or sh catalina.sh stop
