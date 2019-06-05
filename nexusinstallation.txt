@@ -1,0 +1,37 @@
+Nexus Installation
+WEBSITE:https://www.sonatype.com/download-oss-sonatype
+
+cd /opt
+To Download Nexus
+wget http://download.sonatype.com/nexus/3/latest-unix.tar.gz
+			or
+wget https://sonatype-download.global.ssl.fastly.net/nexus/3/nexus-3.0.2-02-unix.tar.gz
+
+To Extract
+tar xzf latest-unix.tar.gz
+	or
+tar -zxvf  nexus-3.0.2-02-unix.tar.gz
+
+cd nexus/nexus-3.15.2-01/bin
+  
+To give the user permessions
+	  vi nexus.rc
+  	remove the comment(#)
+	  and add ec2-user
+
+To Start Nexus
+    ./nexus start
+    service nexus start
+
+
+
+chmod 777 /opt -R
+
+Login nexus server from browser on port 8081
+
+http://<ip>:8081
+
+Use default credentials to login
+
+username : admin
+password : admin123
