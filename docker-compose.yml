@@ -17,3 +17,21 @@ services:
       - "8080:8080"
     depends_on:
       - postgres
+
+
+
+version: '3.1'
+services:
+  tomcatservice:
+    image: tomcat
+    container_name: tomcattest
+    ports:
+    - "8080:8080"
+	
+version: '3.1'
+services:
+  javaservice:
+    image: hasan
+    container_name: hasan
+    ports:
+    - "9090:9090"
