@@ -38,6 +38,30 @@ source /etc/profile.d/java.sh
 
 
 
+
+
+
+
+apt update
+
+sudo apt-get install default-jre
+
+sudo apt-get install default-jdk
+
+sudo update-alternatives --config java
+
+sudo apt-get install vim
+
+sudo vim /etc/environment
+
+JAVA_HOME="/usr/lib/jvm/java-8-oracle"
+
+source /etc/environment
+
+java -version
+
+
+
 ORACLE JAVA(jdk1.8.0_191)
 cd /opt/
 
