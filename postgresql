@@ -1,0 +1,36 @@
+----------Install PostgreSQL on RHEL 8---------------
+
+    yum install -y @postgresql
+
+initialize the database
+    postgresql-setup --initdb
+
+
+Start postgresql
+
+    systemctl start postgresql
+    systemctl enable postgresql
+    systemctl status postgresql
+
+
+Configure PostgreSQL Server
+    vi /var/lib/pgsql/data/postgresql.conf
+Set the listen_addresses to *.
+
+    listen_addresses = '*'
+And Restart the postgresql
+    systemctl restart postgresql
+
+
+
+Access PostgreSQL server
+    # su -l postgres
+Access the database using the psql command.
+    $ psql
+    postgres=#
+Set password for postgres (Database administrator) user.
+
+    postgres=# \password
+
+To exit press
+    \q or exit or quit
