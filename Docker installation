@@ -24,55 +24,22 @@ Docker install on ubuntu
 apt-get update
 apt install docker.io
 
+------------------------------------------------------------------------------------------------
 
+			Docker compose installation
+yum update -y
+yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+yum install python-pip
+pip install docker-compose
+vi docker-compose.yaml
 
-                                        (DOCKER INSTALLATIONS)
-	  sudo yum install -y yum-utils   device-mapper-persistent-data   lvm2
-      sudo yum-config-manager     --add-repo     https://download.docker.com/linux/centos/docker-ce.repo
-      sudo yum-config-manager --enable rhui-REGION-rhel-server-extras
-    1 yum list docker-ce --showduplicates | sort -r
-    2 yum install docker-ce-18.06.0.ce-3.el7 -y
-    3 docker --version
-    4 service docker start
-    5 docker images
-    6 yum install git -y
-    7 git clone https://github.com/mupparajuvamsi/awsprojectdemo.git
-    8 yum install java-1.8.0-openjdk-devel -y
-    9 alternatives --config java
-   10 alternatives --config javac
-   11 yum install wget -y
-   12 wget https://www-eu.apache.org/dist/maven/maven-3/3.6.0/binaries/apache-maven-3.6.0-bin.tar.gz
-   13 sudo tar xzf apache-maven-3.6.0-bin.tar.gz
-   14 sudo ln -s apache-maven-3.6.0 maven
-   15 sudo vi /etc/profile.d/maven.sh
-      export M2_HOME=/opt/maven
-      export PATH=${M2_HOME}/bin:${PATH}
-   16 source /etc/profile.d/maven.sh
-   17 mvn -version
-   18 cd awsprojectdemo/
-   19 cd mavewebappdemo/
-   20 mvn clean install
-   21 cd target/
-   22 vi Dockerfile
-      FROM tomcat
-      ADD ./*.war /usr/local/tomcat/webapps   (*.war or warfilename)
-      EXPOSE 8080
-	                   (or) jar file generation
-	  FROM java:8
-      VOLUME /tmp
-      ADD springbootdockerexample-0.0.1-SNAPSHOT.jar app.jar
-      RUN bash -c 'touch /app.jar'
-      ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]				   
-   23 docker build -t hasan .(or)file full path
-   24 docker run -it --name hasan -p 8080:8080 -d hasan
-   
-                                         (DOCKER COMPOSE)
-    1  yum update -y
-    2  yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-    3  yum install python-pip
-    4  pip install docker-compose
-    5  vi docker-compose.yaml
-              (To compose depends on local images to containers)
+sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+sudo chmod +x /usr/local/bin/docker-compose
+sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+docker-compose --version
+
+		 (To compose depends on local images to containers)
 version: '3.1'
 services:
   myservice:
@@ -133,6 +100,50 @@ services:
       depends_on:
       - myservice	  
  6  docker-compose up
+
+
+                                        (DOCKER INSTALLATIONS)
+	  sudo yum install -y yum-utils   device-mapper-persistent-data   lvm2
+      sudo yum-config-manager     --add-repo     https://download.docker.com/linux/centos/docker-ce.repo
+      sudo yum-config-manager --enable rhui-REGION-rhel-server-extras
+    1 yum list docker-ce --showduplicates | sort -r
+    2 yum install docker-ce-18.06.0.ce-3.el7 -y
+    3 docker --version
+    4 service docker start
+    5 docker images
+    6 yum install git -y
+    7 git clone https://github.com/mupparajuvamsi/awsprojectdemo.git
+    8 yum install java-1.8.0-openjdk-devel -y
+    9 alternatives --config java
+   10 alternatives --config javac
+   11 yum install wget -y
+   12 wget https://www-eu.apache.org/dist/maven/maven-3/3.6.0/binaries/apache-maven-3.6.0-bin.tar.gz
+   13 sudo tar xzf apache-maven-3.6.0-bin.tar.gz
+   14 sudo ln -s apache-maven-3.6.0 maven
+   15 sudo vi /etc/profile.d/maven.sh
+      export M2_HOME=/opt/maven
+      export PATH=${M2_HOME}/bin:${PATH}
+   16 source /etc/profile.d/maven.sh
+   17 mvn -version
+   18 cd awsprojectdemo/
+   19 cd mavewebappdemo/
+   20 mvn clean install
+   21 cd target/
+   22 vi Dockerfile
+      FROM tomcat
+      ADD ./*.war /usr/local/tomcat/webapps   (*.war or warfilename)
+      EXPOSE 8080
+	                   (or) jar file generation
+	  FROM java:8
+      VOLUME /tmp
+      ADD springbootdockerexample-0.0.1-SNAPSHOT.jar app.jar
+      RUN bash -c 'touch /app.jar'
+      ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]				   
+   23 docker build -t hasan .(or)file full path
+   24 docker run -it --name hasan -p 8080:8080 -d hasan
+   
+                                        
+             
  
                                                 (DOCKER SWARM SERVICES)
 												
@@ -161,23 +172,6 @@ result:The node is swarm worker
 Docker swarm running on through overly network
 Docker version 1.13(famous version)
 Latest version 18.09.6
-                              (Docker images push and pull to Docker Hub)
-                      
-    1  docker login
-    2  docker pull hasansk/hema:hello (to pull the images from hub to local)
-    3  yum install git -y
-    4  git clone https://github.com/mupparajuvamsi/awsprojectdemo.git
-    5  cd awsprojectdemo/springbootdockerexample/
-    6  cd target/
-    7  vi Dockerfile
-    8  docker build -t hasansk/hema:10 .
-    9  docker images
-   10  docker push hasansk/hema:10
-   11  docker run -it --name version10 -p 7000:7000 -d hasansk/hema:10
-   12  docker ps -a
-   13  docker commit 6d7d8269fe52
-   14  docker push hasansk/hema:10
-
 
 
 
