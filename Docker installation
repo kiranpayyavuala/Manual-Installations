@@ -9,14 +9,23 @@ yum install docker-ce -y
 Docker install particular version
   
 yum install -y yum-util/device mapper-persistance-data \lvm2
+
 yum-config-manager     --add-repo     https://download.docker.com/linux/centos/docker-ce.repo
 
 This command shows the docker versions and select the which version you want
+
 sudo yum list docker-ce.x86_64 --showduplicates | sort -r
 
 yum install docker-ce-18.06.0.ce-3.el7 -y
 
 service docker start
+------------------------------------------------------------------------------------------------
+ON RHEL8
+dnf install -y dnf-utils \  device-mapper-persistent-data \ lvm2
+yum-config-manager     --add-repo     https://download.docker.com/linux/centos/docker-ce.repo
+yum install docker-ce-18.06.0.ce-3.el7 -y
+systemctl start docker
+systemctl enable docker
 
 ------------------------------------------------------------------------------------------------
 Docker install on ubuntu
@@ -103,44 +112,20 @@ services:
 
 
                                         (DOCKER INSTALLATIONS)
-	  sudo yum install -y yum-utils   device-mapper-persistent-data   lvm2
-      sudo yum-config-manager     --add-repo     https://download.docker.com/linux/centos/docker-ce.repo
-      sudo yum-config-manager --enable rhui-REGION-rhel-server-extras
-    1 yum list docker-ce --showduplicates | sort -r
-    2 yum install docker-ce-18.06.0.ce-3.el7 -y
-    3 docker --version
-    4 service docker start
-    5 docker images
-    6 yum install git -y
-    7 git clone https://github.com/mupparajuvamsi/awsprojectdemo.git
-    8 yum install java-1.8.0-openjdk-devel -y
-    9 alternatives --config java
-   10 alternatives --config javac
-   11 yum install wget -y
-   12 wget https://www-eu.apache.org/dist/maven/maven-3/3.6.0/binaries/apache-maven-3.6.0-bin.tar.gz
-   13 sudo tar xzf apache-maven-3.6.0-bin.tar.gz
-   14 sudo ln -s apache-maven-3.6.0 maven
-   15 sudo vi /etc/profile.d/maven.sh
-      export M2_HOME=/opt/maven
-      export PATH=${M2_HOME}/bin:${PATH}
-   16 source /etc/profile.d/maven.sh
-   17 mvn -version
-   18 cd awsprojectdemo/
-   19 cd mavewebappdemo/
-   20 mvn clean install
-   21 cd target/
-   22 vi Dockerfile
-      FROM tomcat
-      ADD ./*.war /usr/local/tomcat/webapps   (*.war or warfilename)
-      EXPOSE 8080
+
+vi Dockerfile
+    FROM tomcat
+    ADD ./*.war /usr/local/tomcat/webapps
+    EXPOSE 8080
 	                   (or) jar file generation
-	  FROM java:8
-      VOLUME /tmp
-      ADD springbootdockerexample-0.0.1-SNAPSHOT.jar app.jar
-      RUN bash -c 'touch /app.jar'
-      ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]				   
-   23 docker build -t hasan .(or)file full path
-   24 docker run -it --name hasan -p 8080:8080 -d hasan
+    FROM java:8
+    VOLUME /tmp
+    ADD springbootdockerexample-0.0.1-SNAPSHOT.jar app.jar
+    RUN bash -c 'touch /app.jar'
+    ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+    
+docker build -t dockerimagename .(or)file full path
+docker run -it --name containername -p 8080:8080 -d dockerimagename
    
                                         
              
@@ -183,10 +168,6 @@ https://www.youtube.com/watch?v=fmFlAWtKnGA
 
 https://www.youtube.com/watch?v=915ePPMwVCk
 
-
 https://medium.com/@marcus.cavalcanti/deploying-microservices-with-aws-fargate-f0578d8199a3
 
-
-
 https://dzone.com/articles/deploying-spring-boot-to-ecs-part-2
-
