@@ -1,0 +1,106 @@
+INSTALLING MONGODB
+
+config file: /etc/mongo.conf
+Portno : 27017
+
+Adding the MongoDB Repository
+
+sudo vi /etc/yum.repos.d/mongodb-org.repo
+
+[mongodb-org-3.4]
+name=MongoDB Repository
+baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/3.4/x86_64/
+gpgcheck=1
+enabled=1
+gpgkey=https://www.mongodb.org/static/pgp/server-3.4.asc
+
+
+yum repolist
+
+[root@ip-172-31-40-158 ~]# yum repolist
+Loaded plugins: amazon-id, rhui-lb, search-disabled-repos
+repo id                                          repo name                                              status
+mongodb-org-3.4/7Server                          MongoDB Repository                                        100
+rhui-REGION-client-config-server-7/x86_64        Red Hat Update Infrastructure 2.0 Client Configuration      2
+rhui-REGION-rhel-server-releases/7Server/x86_64  Red Hat Enterprise Linux Server 7 (RPMs)               23,675
+rhui-REGION-rhel-server-rh-common/7Server/x86_64 Red Hat Enterprise Linux Server 7 RH Common (RPMs)        235
+
+
+Installing MongoDB
+
+sudo yum install mongodb-org -y
+
+Start mongodb
+
+sudo systemctl start mongod
+
+Status checking
+
+sudo systemctl status mongod
+
+Stop mongodb
+
+sudo systemctl stop mongod
+
+
+
+To connection database
+
+mongo
+
+
+use database1
+use employee
+db.employee.insert({})
+
+>db.createCollection("mycollection")
+{ "ok" : 1 }
+
+		or
+
+>db.createCollection("mycol", { capped : true, autoIndexId : true, size : 6142800, max : 10000 } )
+{ "ok" : 1 }
+ 
+show collections
+mycollection
+
+
+
+>db.mycollection.drop()
+true
+
+
+
+
+
+show the collections
+db.employee.find()
+
+
+
+db.mycol.insert({_id: ObjectId(7df78ad8902c),title: 'MongoDB Overview', description: 'MongoDB is no sql database',by: 'tutorials point',url: 'http://www.tutorialspoint.com',
+   tags: ['mongodb', 'database', 'NoSQL'],
+   likes: 100
+})
+
+
+
+vi /etc/mongod.conf
+bindIp ; 0.0.0.0
+service mongo restart
+
+
+Create users on mongodb
+db.createUser({	user: "user",pwd: "root",roles:[{role: "userAdminAnyDatabase" , db:"admin"}]})
+db.createUser({	user: "Employeeadmin",pwd: "password",roles:[{role: "userAdmin" , db:"Employee"}]})
+db.createUser({	user: "Mohan",pwd: "password",roles:[{role:"read",db:"Marketing"},role:"readWrite",db:"Sales"}}]})
+
+
+sudo service mongod stop
+
+Remove mongodb
+sudo yum erase $(rpm -qa | grep mongodb-org)
+sudo rm -r /var/log/mongodb
+sudo rm -r /var/lib/mongo
+
+yum list installed | grep mongo
