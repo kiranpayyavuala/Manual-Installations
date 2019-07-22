@@ -1,0 +1,70 @@
+Installation of Mysql
+
+Package Name: Mysql-server
+config file: /etc/my.config
+portno: 3306
+logfile: /var/log/mysqld.log
+
+
+wget https://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm
+
+rpm -ivh mysql57-community-release-el7-9.noarch.rpm 
+
+yum install mysql-server -y
+
+sudo systemctl start mysqld 
+
+
+
+cat /var/log/mysqld.log | grep 'temp'
+
+grep 'temporary password' /var/log/mysqld.log
+
+To change root password in mysql
+
+mysql_secure_installation
+
+Type your old password.
+
+Enter new password and confirm it.
+
+Do you want to change root password = 		NO
+
+Remove anonymous users = 					Yes
+
+Disallow root login remotely = 				No
+
+Remove test db and access to it = 			yes
+
+reload privilege tables = 					yes
+
+Default user=root
+
+mysql -u root -p<Root@123>
+
+
+show databases;
+
+To see users on msysql
+SELECT User FROM mysql.user;
+to see users and the host
+select User, Host from mysql.user;
+
+
+Create DATABASE in msysql
+CREATE DATABASE sonar CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+Create users in msysql
+Create USER "newuser"@'localhost' IDENTIFIED BY <password>
+CREATE USER 'sonar' IDENTIFIED BY 'Sonar@1234';
+
+Permession for the user
+GRANT ALL PRIVILEGES *.* TO 'newuser'@'localhost';
+GRANT ALL ON sonar.* TO 'sonar'@'%' IDENTIFIED BY 'Sonar@1234';
+GRANT ALL ON sonar.* TO 'sonar'@'localhost' IDENTIFIED BY 'Sonar@1234';
+
+To save all changes
+FLUSH PRIVILEGES;
+
+
+SELECT * from tutorials_tbl
