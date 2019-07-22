@@ -1,0 +1,28 @@
+ yum install wget -y
+
+  wget https://akamai.bintray.com/7e/7e202a4f47777ef2b78b99edaa24ba337609c61b21cad45dada81d9685f3be77?__gda__=exp=1551372849~hmac=87ee2e990dafab8dff34a4aa948c11ec7c84a88c83cb9a6b2f10af0b7c7f46c7&response-content-disposition=attachment%3Bfilename%3D%22jfrog-artifactory-oss-6.8.3.zip%22&response-content-type=application%2Foctet-stream&requestInfo=U2FsdGVkX18bjAAq06cODNd1RMio5Qwf-w1y6oyC48oPCM4AE8jAU1tYimyn5IyV4fKpvaz3V_KTa8Md1yRtMc38emYgvcviRZlK61e36dgfU3mcjVjEqQLovksu4Cti6PgyNGFh1NUtXWM_bfhHpTlfgZb5WqHLRevYRjH9L3M&response-X-Checksum-Sha1=404f7d361ccdd961b32928e440df3fe828ee5e22&response-X-Checksum-Sha2=7e202a4f47777ef2b78b99edaa24ba337609c61b21cad45dada81d9685f3be77
+
+ ls -ll
+  mv 7e202a4f47777ef2b78b99edaa24ba337609c61b21cad45dada81d9685f3be77?__gda__=exp=1551372849~hmac=87ee2e990dafab8dff34a4aa948c11ec7c84a88c83cb9a6b2f10af0b7c7f46c7 jfrog-artifactory-oss-6.8.3.zip
+
+  ls -ll
+
+  yum install unzip -y
+
+  unzip jfrog-artifactory-oss-6.8.3.zip
+
+  ls -ll
+
+  cd artifactory-oss-6.8.3/
+
+  cd bin/
+
+  ll
+
+  sh artifactory.sh
+
+  sh artifactory.sh
+
+  nohup sh artifactory.sh &
+ 
+  tail -f nohub.out
