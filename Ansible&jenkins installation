@@ -1,4 +1,4 @@
-ansible installation
+ANSIBLE INSTALLATION ON RHEL7
 epel(extra package for enterprise linux)
 website:https://dl.fedoraproject.org/pub/epel/
 yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm -y
@@ -9,9 +9,10 @@ ansible --version
 vi jenkins.yml
 ansible-playbook jenkins.yml --syntax-check
 ansible-playbook jenkins.yml
+------------------------------------------------------------------------------------------------------------------------------------
+ANSIBLE INSTALLATION ON RHEL8
 
 INSTALL PYTHON
-
 yum install python3
 alternatives --set python /usr/bin/python3
 yum -y install python3-pip
@@ -27,6 +28,6 @@ ansible ALL=(ALL) NOPASSWD: ALL
 change to ansible user
 
 INSTALL ANSIBLE
-pip3 install ansible --user
 
+pip3 install ansible --user
 ansible --version
