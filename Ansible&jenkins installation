@@ -10,22 +10,23 @@ vi jenkins.yml
 ansible-playbook jenkins.yml --syntax-check
 ansible-playbook jenkins.yml
 
-------------------------------------------------------------------------------------------------------
+INSTALL PYTHON
 
-Jenkins installation on Rhel
-wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
-rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key
-yum install jenkins -y
-Start/Stop
-service jenkins start/stop/restart
-sudo chkconfig jenkins on
+yum install python3
+alternatives --set python /usr/bin/python3
+yum -y install python3-pip
+python -V
 
--------------------------------------------------------------------------------------------------------
+Create the user ansible
 
-Jenkins installation on ubuntu
-wget -q -O - https://pkg.jenkins.io/debian/jenkins-ci.org.key | sudo apt-key add -
-sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
-sudo apt-get update
-sudo apt-get install jenkins
+useradd ansible
 
---------------------------------------------------------------------------------------------------------
+Make the necessary entry in sudoers file /etc/sudoersfor ansible user for password-less sudo access:
+ansible ALL=(ALL) NOPASSWD: ALL
+
+change to ansible user
+
+INSTALL ANSIBLE
+pip3 install ansible --user
+
+ansible --version
