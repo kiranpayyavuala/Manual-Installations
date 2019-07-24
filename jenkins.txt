@@ -1,0 +1,39 @@
+Jenkins installation on Rhel
+wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
+rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key
+yum install jenkins -y
+Start/Stop
+service jenkins start/stop/restart
+sudo chkconfig jenkins on
+
+-------------------------------------------------------------------------------------------------------
+Jenkins installation on ubuntu
+wget -q -O - https://pkg.jenkins.io/debian/jenkins-ci.org.key | sudo apt-key add -
+sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+sudo apt-get update
+sudo apt-get install jenkins
+
+--------------------------------------------------------------------------------------------------------
+To change port no
+
+--------------------------------------
+java -jar jenkins.war --httpPort=8081
+--------------------------------------
+sudo service jenkins stop
+change port number in 
+
+/etc/sysconfig/jenkins
+
+JENKINS_PORT="8080" replace 8080 with our portno
+
+start Jenkins again
+
+sudo service jenkins start
+----------------------------------------------------------------------------------------------
+login without jenkins username and password Go go edit
+
+vi /var/lib/jenkins/config.xml
+
+Change <useSecurity>true</useSecurity> to false
+
+sudo service jenkins restart
