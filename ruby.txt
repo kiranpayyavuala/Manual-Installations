@@ -1,0 +1,75 @@
+---------------------------ruby------------------------------------
+gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+curl -sSL https://get.rvm.io | bash -s stable --ruby
+source /usr/local/rvm/scripts/rvm
+rvm get stable --autolibs=enable
+	
+usermod -a -G rvm root
+rvm list known
+rvm install ruby-2.5.1
+rvm --default use ruby-2.5.1
+
+rvm install ruby-2.4.0
+rvm --default use ruby-2.4.0
+
+
+curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+sudo apt install -y nodejs
+gem update --system
+gem install rails -v 5.2.0
+	
+-----------------------------------------------------------
+postgresql installation
+    
+sudo apt install postgresql postgresql-contrib libpq-dev -y
+
+--------------------------------------------------------
+ vi /etc/postgresql/10/main/postgresql.conf
+
+ listen address= "*"
+-------------------------------------------------------
+find / | grep -i pg_hba.conf
+ vi /etc/postgresql/10/main/pg_hba.conf
+ 
+ # TYPE DATABASE USER CIDR-ADDRESS  METHOD
+ host  all  all 0.0.0.0/0 md5
+--------------------------------------------------------
+ systemctl start postgresql
+ systemctl enable postgresql
+ su - postgres
+ psql
+ \password
+ CREATE DATABASE postgres;
+ ----------------------------------------------------------  
+rails new myapp -d postgresql
+
+cd myapp/
+-------------------------------------------------------------
+change the below details on database.yml
+
+vi config/database.yml
+
+development:
+  <<: *default
+  database: postgres
+  
+  username: postgres  
+  
+  password: postgres
+  
+  host: 52.90.108.71
+  
+  
+  test:
+  <<: *default
+  database: myapp_test
+-------------------------------------------------------------
+To Start this myapp application
+
+	rails server -e development -b 0.0.0.0 -p 3000     
+
+-------------------------------------------------------------
+
+
+Reference:
+https://www.howtoforge.com/tutorial/ubuntu-ruby-on-rails/
