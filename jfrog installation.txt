@@ -26,3 +26,17 @@
   nohup sh artifactory.sh &
  
   tail -f nohub.out
+
+jfrog installation on Docker
+----------------------------
+Pulling the Artifactory OSS Docker Image
+docker pull docker.bintray.io/jfrog/artifactory-oss:latest
+
+Running Artifactory OSS in a container
+docker run --name artifactory -d -p 8081:8081 docker.bintray.io/jfrog/artifactory-oss:latest
+
+
+To access webinteface
+http://your.server.ip:8081
+username: admin
+password: password
