@@ -5,6 +5,9 @@ yum install java-1.8.0-openjdk-devel -y
 alternatives --config java
 alternatives --config javac
 
+JAVA_HOME="/usr/lib/jvm/open-jdk"
+source /etc/environment
+echo $JAVA_HOME
 ----------------------------------------------------------------------------------------------------------------------------------------
 
 INSTALLING ORACLE JAVA(jdk-8u201)
