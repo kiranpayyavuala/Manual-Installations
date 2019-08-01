@@ -1,4 +1,12 @@
 Nexus Installation
+
+docker pull sonatype/nexus3
+
+docker run -it --name nexuscontainer1 -p 8081:8081 -d sonatype/nexus3
+
+
+
+
 WEBSITE:https://www.sonatype.com/download-oss-sonatype
 
 cd /opt
