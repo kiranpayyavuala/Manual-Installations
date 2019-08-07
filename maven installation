@@ -12,6 +12,11 @@ sudo vi /etc/profile.d/maven.sh
 export M2_HOME=/opt/apache-maven-3.5.4
 export PATH=${M2_HOME}/bin:${PATH}
 
+                      or
+
+export MAVEN_HOME=/opt/apache-maven-3.5.4
+export PATH=$PATH:/opt/apache-maven-3.5.4/bin
+
 source /etc/profile.d/maven.sh
 
 mvn -version
