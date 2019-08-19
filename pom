@@ -1,0 +1,84 @@
+Configuring Maven Repository Manager with JFrog Artifactory
+-----------------------------------------------------------
+
+Download JFrog Artifactory and either create your own local repository or use the pre-defined release & snapshot repositories available.
+Lets use pre-defined “example-repo-local”
+
+Configuring Maven (settings.xml)
+--------------------------------
+
+Add the Following is the settings.xml
+In windows .m2/settings.xml, if it is linux conf/settings.xml add the below content
+
+Add the below content in the <servers></servers>
+````````````````````````````````````````````````
+  <server>
+      <id>central</id>
+      <username>admin</username>
+      <password>password</password>
+  </server>
+  <server>
+      <id>snapshots</id>
+      <username>admin</username>
+      <password>password</password>
+  </server>
+
+
+Add this below content in the  <profiles> </profiles>
+`````````````````````````````````````````````````````
+<profiles>
+   <profile>
+     <repositories>
+        <repository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+               <id>central</id>
+                <name>libs-release</name>
+                      <url>http://<Replace with jfrog server ip>:8081/artifactory/example-repo-local</url>
+             <releases>
+                 <enabled>true</enabled>
+             </releases> 
+           </repository>
+           <repository>
+                <id>snapshots</id>
+             <snapshots>
+                     <enabled>true</enabled>
+             </snapshots>
+               <name>libs-snapshot</name>
+                     <url>http://Replace with jfrog server ip:8081/artifactory/example-repo-local</url>
+              <releases>
+                 <enabled>false</enabled>
+              </releases>
+         </repository>
+           </repositories>
+             <pluginRepositories>
+                <pluginRepository>
+                   <snapshots>
+                      <enabled>false</enabled>
+                   </snapshots>
+                   <id>central</id>
+                   <name>plugins-release</name>
+                     <url>http://Replace with jfrog server ip:8081/artifactory/example-repo-local</url>
+                </pluginRepository>
+                <pluginRepository>
+                   <snapshots />
+                     <id>snapshots</id>
+                     <name>plugins-snapshot</name>
+                     <url>http://Replace with jfrog server ip:8081/artifactory/example-repo-local</url>
+                </pluginRepository>
+             </pluginRepositories>
+         <id>artifactory</id>
+    </profile>
+</profiles>
+
+
+Add this activeprofile above the </settings>
+````````````````````````````````````````````
+      <activeProfiles>
+          <activeProfile>artifactory</activeProfile>
+      </activeProfiles>
+
+
+
+Ref:-https://medium.com/@anusha.sharma3010/configuring-maven-repository-manager-with-jfrog-artifactory-a0eb4b98dc22
