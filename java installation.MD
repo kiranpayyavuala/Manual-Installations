@@ -17,13 +17,14 @@
    vi ~/.bash_profile
    ```
    _The output should be something like this,_
-    ```sh
+```
+   sh
    java -version
    openjdk version "1.8.0_151"
    OpenJDK Runtime Environment (build 1.8.0_151-b12)
    OpenJDK 64-Bit Server VM (build 25.151-b12, mixed mode)
-   ```
-OPEN JDK
+```
+openjdk
 ```
 yum install java-1.8.0-openjdk -y
 yum install java-1.8.0-openjdk-devel -y
@@ -36,9 +37,9 @@ source /etc/environment
 echo $JAVA_HOME
 ```
 ----------------------------------------------------------------------------------------------------------------------------------------
-```
-INSTALLING ORACLE JAVA(jdk-8u201)
 
+INSTALLING ORACLE JAVA(jdk-8u201)
+```
 LINK:-https://download.oracle.com/otn-pub/java/jdk/8u201-b09/42970487e3af4f5aa5bca3f542482c60/jdk-8u201-linux-x64.tar.gz
 
 cd /opt
@@ -68,8 +69,9 @@ export PATH=$PATH:/opt/jdk1.8.0_201/bin:/opt/jdk1.8.0_201/jre/bin
 source /etc/profile.d/java.sh
 ```
 ----------------------------------------------------------------------------------------------------------------------------------------
-```
+
 ORACLE JAVA(jdk1.8.0_191)
+```
 cd /opt/
 
 yum install wget
@@ -100,13 +102,22 @@ java -version
 ----------------------------------------------------------------------------------------------------------------------------------------
 ```
 apt update
+
 sudo apt-get install openjdk-8-jre
+
 sudo apt-get install default-jre
+
 sudo apt-get install default-jdk
+
 sudo update-alternatives --config java
+
 sudo apt-get install vim
+
 sudo vim /etc/environment
+
 JAVA_HOME="/usr/lib/jvm/java-8-oracle"
+
 source /etc/environment
+
 java -version
 ```
